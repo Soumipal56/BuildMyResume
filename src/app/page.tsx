@@ -1,8 +1,10 @@
 import React from 'react'
 
-const page = () => {
+type Props = {}
+
+const page = (props: Props) => {
   return (
-    <div>page</div>
+    <div>This is my main page</div>
   )
 }
 
