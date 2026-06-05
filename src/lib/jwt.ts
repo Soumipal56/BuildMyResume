@@ -7,6 +7,6 @@ export const generateToken = (payload: JWTPayload): string => {
     })
 }
 
-export const verifyToken = (token: string) => {
+export const verifyToken = (token: string): any => {
     return jwt.verify(token, process.env.JWT_SECRET!)
 }
