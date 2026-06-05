@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
             name, email, mobile, password
         })
 
-        let token = generateToken({ userId: newUser._id })
+        let token = generateToken({ userId: newUser._id.toString() })
 
         let response = NextResponse.json<ApiResponse>({
             success: true,
