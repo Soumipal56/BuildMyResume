@@ -1,7 +1,7 @@
 import { IResume } from "@/types/resume.types"
 import mongoose from "mongoose"
 
-let resumeSchema = new mongoose.Schema<IResume>({
+const resumeSchema = new mongoose.Schema<IResume>({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
