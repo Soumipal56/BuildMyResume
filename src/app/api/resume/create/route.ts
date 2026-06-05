@@ -4,11 +4,11 @@ import ResumeModel from "@/models/Resume.model";
 import { ApiResponse } from "@/types/api.types";
 import { NextRequest, NextResponse } from "next/server";
 
-async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
  try{
    await connectDB()
 
-   const userId = getCurrentUser();
+   const userId = await getCurrentUser();
 
    const newResume = await ResumeModel.create({
       user_id: userId,
@@ -37,4 +37,3 @@ async function POST(req: NextRequest) {
  }
 }
 
-export { POST }
