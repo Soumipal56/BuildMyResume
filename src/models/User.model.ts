@@ -28,12 +28,12 @@ let userSchema = new mongoose.Schema<IUser>({
     timestamps: true
 })
 
-userSchema.pre('save', function () {
+userSchema.pre('save', function (): void {
     if(!this.isModified('password')) return
     this.password = bcrypt.hashSync(this.password, 10)
 })
 
-userSchema.methods.comparePass = function(candidatePassword: string) {
+userSchema.methods.comparePass = function(candidatePassword: string): boolean {
     return bcrypt.compareSync(candidatePassword, this.password)
 }
 
