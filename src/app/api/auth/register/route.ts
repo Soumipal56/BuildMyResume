@@ -3,10 +3,9 @@ import { connectDB } from "@/lib/mongodb"
 import userModel from "@/models/User.model"
 import { ApiResponse } from "@/types/api.types"
 import { RegisterBody } from "@/types/user.types"
-import { RegisterOptions } from "module"
 import { NextRequest, NextResponse } from "next/server"
 
-async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
     try{
 
         await connectDB()
