@@ -25,3 +25,8 @@ export interface GenerateExperienceDescriptionBody {
 export interface ImproveContentBody {
     content: string;
 }
+
+export interface GenerateProjectTechStackBody {
+    projectTitle: string;
+    projectDescription: string;
+}

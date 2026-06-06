@@ -11,11 +11,18 @@ export async function GET(req: NextRequest, {params} : { params: Promise<{ resum
 
     const user = await getCurrentUser();
 
+    if (!user) {
+        return NextResponse.json<ApiResponse>({
+            success: false,
+            message: "Unauthorized",
+        }, { status: 401 });
+    }
+
     const {resumeId} = await params;
 
     const resume = await ResumeModel.findOne({
         _id: resumeId,
-        user_id: user.userId,
+        user_id: user,
     })
 
     if(!resume) return NextResponse.json<ApiResponse>({
@@ -48,13 +55,20 @@ export async function PATCH(req: NextRequest, {params} : { params: Promise<{ res
 
     const user = await getCurrentUser();
 
+    if (!user) {
+        return NextResponse.json<ApiResponse>({
+            success: false,
+            message: "Unauthorized",
+        }, { status: 401 });
+    }
+
     const body = await req.json();
 
     const {resumeId} = await params;
 
     const updatedResume = await ResumeModel.findOneAndUpdate({
         _id: resumeId,
-        user_id: user.userId,
+        user_id: user,
     },
     {
         $set: body,

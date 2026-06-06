@@ -6,13 +6,13 @@ export async function getCurrentUser(){
 
     const token = cookieStore.get('token')?.value;
 
-    if(!token) throw new Error("Token not found");
+    if(!token) return null;
 
-    const decode = verifyToken(token);
-
-    if (!decode) throw new Error("unauthorized");
-
-    return decode.userId
-
-
+    try {
+        const decode = verifyToken(token);
+        if (!decode) return null;
+        return decode.userId;
+    } catch (error) {
+        return null;
+    }
 }

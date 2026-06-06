@@ -10,9 +10,26 @@ export async function POST(req: NextRequest) {
 
    const userId = await getCurrentUser();
 
+   if (!userId) {
+      return NextResponse.json<ApiResponse>({
+         success: false,
+         message: "Unauthorized",
+      }, { status: 401 });
+   }
+   
+   // Read body for modal fields
+   let body: any = {};
+   try {
+     body = await req.json();
+   } catch (e) {
+     // If no body provided, ignore
+   }
+
    const newResume = await ResumeModel.create({
       user_id: userId,
-      title: "",
+      title: body.title || "",
+      jobTitle: body.jobTitle || "",
+      experienceLevel: body.experienceLevel || "",
       summary: "",
       personalInfo: {},
       workExperience: [],

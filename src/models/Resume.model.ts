@@ -11,6 +11,14 @@ const resumeSchema = new mongoose.Schema<IResume>({
         type: String,
         default: ''
     },
+    jobTitle: {
+        type: String,
+        default: ''
+    },
+    experienceLevel: {
+        type: String,
+        default: ''
+    },
     summary: {
         type: String,
         default: ''
