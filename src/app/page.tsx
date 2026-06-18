@@ -1,11 +1,5 @@
-import React from 'react'
+import { redirect } from 'next/navigation';
 
-type Props = {}
-
-const page = (props: Props) => {
-  return (
-    <div>This is my main page</div>
-  )
+export default function RootPage() {
+  redirect('/resume');
 }
-
-export default page
