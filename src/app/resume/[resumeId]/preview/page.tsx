@@ -44,6 +44,7 @@ export default function ResumePreviewPage({ params }: { params: Promise<{ resume
       // @ts-ignore
       const html2pdf = (await import('html2pdf.js')).default;
       const element = document.getElementById('resume-preview-content');
+      if (!element) throw new Error('Resume content element not found');
       const opt = {
         margin:       0,
         filename:     `${personalInfo?.fullname?.replace(/\s+/g, '_') || 'Resume'}.pdf`,
